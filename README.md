@@ -1,4 +1,5 @@
-# GENERATORE DI PASSWORD E VALUTAZIONE DELLA SICUREZZA DI UNA PASSWORD DI DENNIS BERTAGNOLO E RICCARDO BAITA
+# GENERATORE DI PASSWORD E VALUTAZIONE DELLA SICUREZZA DI UNA PASSWORD
+
 
 - [X] almeno 1 maiuscola
 - [X] almeno 1 minuscola
@@ -27,4 +28,6 @@
 - [ ] Pronunciabilità della password opzionale
 - [ ] Generazione multipla istantanea
 
+
+### lavoro scolastico, prima versione svolta assieme ad un compagno di classe. Eventuali update li farò da solo
 
