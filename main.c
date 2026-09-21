@@ -27,11 +27,12 @@ int main(){
 
         printf("\n\nScegli:\n 1. generare password causalmente\n 2. Inserisci password per verificare la sicurezza\nInserisci:");
         scanf("%d", &scelta);
-        if(scelta != 1 && scelta != 2)
+        if(scelta != 1 && scelta != 2) {
             printf("hai sbagliato\n");
-            // se l'utente non invia 
+            // se l'utente non invia
             while (getchar() != '\n');
             scelta = 0;
+        }
 
     } while(scelta != 1 && scelta != 2);
     switch(scelta) {
