@@ -29,6 +29,9 @@ int main(){
         scanf("%d", &scelta);
         if(scelta != 1 && scelta != 2)
             printf("hai sbagliato\n");
+            // se l'utente non invia 
+            while (getchar() != '\n');
+            scelta = 0;
 
     } while(scelta != 1 && scelta != 2);
     switch(scelta) {
