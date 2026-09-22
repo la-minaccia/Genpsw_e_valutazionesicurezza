@@ -6,7 +6,9 @@
 #define NUMERI 10
 #define SPECIALI 28
 
+void menu(int *scelta, char password[], char minuscola[], char maiuscola[], char speciali[], char numeri[]);
 void verificaPassword(char password[], char maiuscola[], char minuscola[], char speciali[], char numeri[]);
+void generaPassword(char password[], char maiuscola[], char minuscola[], char speciali[], char numeri[]);
 int checkMaiuscola(char mai[], char p[]);
 int checkMinuscola(char min[], char p[]);
 int checkSpeciali(char sp[], char p[]);
@@ -22,8 +24,21 @@ int main(){
     char numeri[NUMERI] = {'0','1','2','3','4','5','6','7','8','9'};
 
 
+    menu(&scelta, password, minuscola, maiuscola, speciali, numeri);
 
-    do{
+
+    printf("\n\n");
+    for (int i = 0; password[i] != '\0'; i++) {
+        printf("%c", password[i]);
+    }
+    main();
+
+    return 0;
+}
+
+
+
+void menu(int *scelta, char password[], char minuscola[], char maiuscola[], char speciali[], char numeri[]) {
 
         printf("\n\nScegli:\n 1. generare password causalmente\n 2. Inserisci password per verificare la sicurezza\nInserisci:");
         scanf("%d", &scelta);
@@ -34,54 +49,22 @@ int main(){
             scelta = 0;
         }
 
-    } while(scelta != 1 && scelta != 2);
-    switch(scelta) {
+    switch(*scelta) {
         case 2:
             verificaPassword(password, minuscola, maiuscola, speciali, numeri);
-
 
             break;
 
         case 1:
 
-            int l = (rand()%7) + 10;
+            generaPassword(password);
+            break;
 
-            for (int i = 0; i<l; i++) {
-                int j = rand()%4;
-                switch (j) {
-                    case 0:
-                        password[i] = maiuscola[rand()%ALFABETO];
-                        break;
-                    case 1:
-                        password[i] = minuscola[rand()%ALFABETO];
-                        break;
-                    case 2:
-                        password[i] = speciali[rand()%SPECIALI];
-                        break;
-                    case 3:
-                        password[i] = numeri[rand()%NUMERI];
-                        break;
-                }
-            }
-
-
-
-
-
-
-
-
-
-
+        default:
+            menu(scelta, password, minuscola, maiuscola, speciali, numeri);
     }
-    printf("\n\n");
-    for (int i = 0; password[i] != '\0'; i++) {
-        printf("%c", password[i]);
-    }
-    main();
-
-    return 0;
 }
+
 
 void verificaPassword(char password[], char maiuscola[], char minuscola[], char speciali[], char numeri[]) {
     int v = 0, n = 0;
@@ -120,6 +103,29 @@ void verificaPassword(char password[], char maiuscola[], char minuscola[], char 
 }
 
 
+void generaPassword(char password[], char maiuscola[], char minuscola[], char speciali[], char numeri[]) {
+    int l = (rand()%7) + 10;
+
+    for (int i = 0; i<l; i++) {
+        int j = rand()%4;
+        switch (j) {
+            case 0:
+                password[i] = maiuscola[rand()%ALFABETO];
+                break;
+            case 1:
+                password[i] = minuscola[rand()%ALFABETO];
+                break;
+            case 2:
+                password[i] = speciali[rand()%SPECIALI];
+                break;
+            case 3:
+                password[i] = numeri[rand()%NUMERI];
+                break;
+        }
+    }
+}
+
+
 int checkMaiuscola(char mai[], char p[]) {
     int n = 0;
     for (int i = 0; p[i] != '\0'; i++)
@@ -143,7 +149,7 @@ int checkMinuscola(char min[], char p[]) {
 int checkSpeciali(char sp[], char p[]) {
     int n = 0;
     for (int i = 0; p[i] != '\0'; i++)
-        for (int j = 0; j < ALFABETO; j++)
+        for (int j = 0; j < SPECIALI; j++)
             if(p[i] == sp[j]) n++;
     if (n == 0) return (0);
     return (1);
@@ -152,7 +158,7 @@ int checkSpeciali(char sp[], char p[]) {
 int checkNumeri(char num[], char p[]) {
     int n = 0;
     for (int i = 0; p[i] != '\0'; i++)
-        for (int j = 0; j < ALFABETO; j++)
+        for (int j = 0; j < NUMERI; j++)
             if(p[i] == num[j]) n++;
     if (n == 0) return (0);
     return (1);
