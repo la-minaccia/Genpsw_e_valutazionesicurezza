@@ -9,6 +9,7 @@
 
 
 ## aggiunte: 
+- [ ] mostrare la logica con pseudo codice
 - [ ] valuti il livello di sicurezza
 - [ ] Integrazione con database di password compromesse come Have I Been Pwned
 - [ ] Rilevamento di sequenze comuni
