@@ -84,16 +84,15 @@ int main(){
 }
 
 void verificaPassword(char password[], char maiuscola[], char minuscola[], char speciali[], char numeri[]) {
-    int v = 0;
+    int v = 0, n = 0;
     printf("Inserisci la password (max 16 caratteri):\t");
     scanf("%16s", password);
 
-    for (int i = 0; password[i] != '\0'; i++)
-        if (i < 10) {
+    for (; password[n] != '\0'; n++);
+        if (n < 10) {
             printf("Password troppo corta!");
             v = 1;
-            break;
-        }
+        } else printf("Lunghezza soddisfata");
 
     if (checkMaiuscola(maiuscola, password) == 1) printf("\nHa almeno 1 maiuscola\n");
     else {
