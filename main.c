@@ -6,7 +6,7 @@
 #define NUMERI 10
 #define SPECIALI 28
 
-void menu(int *scelta, char password[], char minuscola[], char maiuscola[], char speciali[], char numeri[]);
+void menu(char password[], char minuscola[], char maiuscola[], char speciali[], char numeri[]);
 void verificaPassword(char password[], char maiuscola[], char minuscola[], char speciali[], char numeri[]);
 void generaPassword(char password[], char maiuscola[], char minuscola[], char speciali[], char numeri[]);
 int checkMaiuscola(char mai[], char p[]);
@@ -16,30 +16,34 @@ int checkNumeri(char num[], char p[]);
 
 int main(){
     srand(time(NULL));
-    int scelta =0;
+    int fine = 0;
     char password[N] = {'c'};
     char maiuscola[ALFABETO] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     char minuscola[ALFABETO] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     char speciali[SPECIALI] = {'!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', ']', '{', '}', '|', ';', ':', ',', '.', '<', '>', '?', '/', '\\'};
     char numeri[NUMERI] = {'0','1','2','3','4','5','6','7','8','9'};
 
+    do {
+        menu(password, minuscola, maiuscola, speciali, numeri);
 
-    menu(&scelta, password, minuscola, maiuscola, speciali, numeri);
 
+        printf("\n");
+        for (int i = 0; password[i] != '\0'; i++) {
+            printf("%c", password[i]);
+        }
 
-    printf("\n\n");
-    for (int i = 0; password[i] != '\0'; i++) {
-        printf("%c", password[i]);
-    }
-    main();
+        printf("Premi 0 per uscire altrimenti premi qualunque altro NUMERO");
+        scanf("%d", &fine);
+    } while (fine == 0);
+
 
     return 0;
 }
 
 
 
-void menu(int *scelta, char password[], char minuscola[], char maiuscola[], char speciali[], char numeri[]) {
-
+void menu(char password[], char minuscola[], char maiuscola[], char speciali[], char numeri[]) {
+    int scelta =0;
         printf("\n\nScegli:\n 1. generare password causalmente\n 2. Inserisci password per verificare la sicurezza\nInserisci:");
         scanf("%d", &scelta);
         if(scelta != 1 && scelta != 2) {
@@ -49,7 +53,7 @@ void menu(int *scelta, char password[], char minuscola[], char maiuscola[], char
             scelta = 0;
         }
 
-    switch(*scelta) {
+    switch(scelta) {
         case 2:
             verificaPassword(password, minuscola, maiuscola, speciali, numeri);
 
@@ -57,11 +61,11 @@ void menu(int *scelta, char password[], char minuscola[], char maiuscola[], char
 
         case 1:
 
-            generaPassword(password);
+            generaPassword(password, minuscola, maiuscola, speciali, numeri);
             break;
 
         default:
-            menu(scelta, password, minuscola, maiuscola, speciali, numeri);
+            menu(password, minuscola, maiuscola, speciali, numeri);
     }
 }
 
